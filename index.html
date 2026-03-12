@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>App Launch Demo</title>
+    <meta
+      name="description"
+      content="一个用于手机端验证 App 拉起流程的 H5 Demo。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Mobile H5 Demo</p>
+        <h1>在手机浏览器里拉起对应应用</h1>
+        <p class="intro">
+          这是一版最小可运行流程：进入页面，识别设备环境，点击按钮拉起 App；如果未安装或被浏览器拦截，则自动回退到下载页。
+        </p>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>目标应用</h2>
+          <p>你可以先用默认示例验证，也可以改成你们自己的深链。</p>
+        </div>
+
+        <label class="field">
+          <span>应用名称</span>
+          <input id="appName" type="text" value="Demo App" />
+        </label>
+
+        <label class="field">
+          <span>iPhone / iPad 拉起地址</span>
+          <input
+            id="iosScheme"
+            type="text"
+            value="demoapp://open/home"
+            spellcheck="false"
+          />
+        </label>
+
+        <label class="field">
+          <span>Android 拉起地址</span>
+          <input
+            id="androidScheme"
+            type="text"
+            value="intent://open/home#Intent;scheme=demoapp;package=com.example.demo;end"
+            spellcheck="false"
+          />
+        </label>
+
+        <label class="field">
+          <span>App Store 回退地址</span>
+          <input
+            id="iosStoreUrl"
+            type="url"
+            value="https://apps.apple.com/"
+            spellcheck="false"
+          />
+        </label>
+
+        <label class="field">
+          <span>Android 下载页回退地址</span>
+          <input
+            id="androidStoreUrl"
+            type="url"
+            value="https://play.google.com/store"
+            spellcheck="false"
+          />
+        </label>
+
+        <div class="cta-group">
+          <button id="launchButton" class="primary-button">打开应用</button>
+          <button id="copyButton" class="ghost-button">复制当前配置</button>
+        </div>
+      </section>
+
+      <section class="panel status-panel">
+        <div class="status-row">
+          <span class="status-label">设备环境</span>
+          <strong id="deviceInfo">检测中</strong>
+        </div>
+        <div class="status-row">
+          <span class="status-label">浏览器限制</span>
+          <strong id="browserInfo">检测中</strong>
+        </div>
+        <div class="status-box" id="statusBox">
+          等待操作。请在手机浏览器中打开并点击“打开应用”。
+        </div>
+      </section>
+
+      <section class="panel tips-panel">
+        <h2>建议验证路径</h2>
+        <ol>
+          <li>先把页面部署到一个手机能访问的地址。</li>
+          <li>真机打开页面，点击“打开应用”。</li>
+          <li>观察是否成功拉起；若失败，看是否跳到商店或下载页。</li>
+          <li>如果在微信内打开，通常需要提示用户换到系统浏览器。</li>
+        </ol>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
