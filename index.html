@@ -16,6 +16,7 @@
   <body>
     <main class="page">
       <nav class="top-nav">
+        <a href="#game2048">2048</a>
         <a href="#launcher">打开应用</a>
         <a href="#shortcuts">快捷入口</a>
         <a href="#scenes">使用场景</a>
@@ -32,6 +33,36 @@
           <a class="hero-link primary-link" href="#launcher">立即体验</a>
           <a class="hero-link secondary-link" href="#shortcuts">查看入口</a>
         </div>
+      </section>
+
+      <section class="panel game-panel" id="game2048">
+        <div class="panel-header">
+          <h2>2048</h2>
+          <p>放在靠前位置，手机上直接滑动就能玩。</p>
+        </div>
+
+        <div class="game-meta">
+          <div class="score-box">
+            <span>分数</span>
+            <strong id="scoreValue">0</strong>
+          </div>
+          <button id="restartGameButton" class="ghost-button">重新开始</button>
+        </div>
+
+        <div class="game-board-wrap">
+          <div class="game-board" id="gameBoard" aria-label="2048 board"></div>
+        </div>
+
+        <div class="game-controls">
+          <button class="mini-button" data-move="up">上</button>
+          <div class="game-controls-row">
+            <button class="mini-button" data-move="left">左</button>
+            <button class="mini-button" data-move="down">下</button>
+            <button class="mini-button" data-move="right">右</button>
+          </div>
+        </div>
+
+        <p class="tool-note" id="gameMessage">合并相同数字，目标是尽量打到 2048。</p>
       </section>
 
       <section class="panel" id="launcher">

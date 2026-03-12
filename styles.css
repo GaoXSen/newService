@@ -262,6 +262,88 @@ button {
   line-height: 1.6;
 }
 
+.game-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.score-box {
+  min-width: 96px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: #fff7ec;
+}
+
+.score-box span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.score-box strong {
+  font-size: 24px;
+}
+
+.game-board-wrap {
+  margin-top: 16px;
+  padding: 10px;
+  border-radius: 24px;
+  background: #c8b8a4;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  touch-action: none;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.28);
+  color: #6d665d;
+  font-size: clamp(20px, 6vw, 30px);
+  font-weight: 800;
+}
+
+.tile[data-value="0"] {
+  color: transparent;
+}
+
+.tile[data-value="2"] { background: #efe6dc; color: #6b625a; }
+.tile[data-value="4"] { background: #efddc8; color: #6b625a; }
+.tile[data-value="8"] { background: #f2b27b; color: #fff; }
+.tile[data-value="16"] { background: #f69664; color: #fff; }
+.tile[data-value="32"] { background: #f77c5f; color: #fff; }
+.tile[data-value="64"] { background: #f75f3b; color: #fff; }
+.tile[data-value="128"] { background: #edd073; color: #fff; font-size: clamp(18px, 5vw, 26px); }
+.tile[data-value="256"] { background: #edcc62; color: #fff; font-size: clamp(18px, 5vw, 26px); }
+.tile[data-value="512"] { background: #edc950; color: #fff; font-size: clamp(18px, 5vw, 26px); }
+.tile[data-value="1024"] { background: #edc53f; color: #fff; font-size: clamp(15px, 4vw, 22px); }
+.tile[data-value="2048"] { background: #edc22e; color: #fff; font-size: clamp(15px, 4vw, 22px); }
+.tile[data-value="4096"] { background: #3c3a33; color: #fff; font-size: clamp(15px, 4vw, 22px); }
+
+.game-controls {
+  margin-top: 16px;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.game-controls-row {
+  display: flex;
+  gap: 10px;
+}
+
 .status-panel {
   display: grid;
   gap: 12px;
