@@ -4,8 +4,13 @@ const els = {
   androidScheme: document.querySelector("#androidScheme"),
   iosStoreUrl: document.querySelector("#iosStoreUrl"),
   androidStoreUrl: document.querySelector("#androidStoreUrl"),
+  webUrl: document.querySelector("#webUrl"),
+  helpUrl: document.querySelector("#helpUrl"),
+  contactUrl: document.querySelector("#contactUrl"),
+  privacyUrl: document.querySelector("#privacyUrl"),
   launchButton: document.querySelector("#launchButton"),
   copyButton: document.querySelector("#copyButton"),
+  sceneLaunchButton: document.querySelector("#sceneLaunchButton"),
   deviceInfo: document.querySelector("#deviceInfo"),
   browserInfo: document.querySelector("#browserInfo"),
   statusBox: document.querySelector("#statusBox"),
@@ -58,6 +63,10 @@ function getConfig() {
     androidScheme: els.androidScheme.value.trim(),
     iosStoreUrl: els.iosStoreUrl.value.trim(),
     androidStoreUrl: els.androidStoreUrl.value.trim(),
+    webUrl: els.webUrl.value.trim(),
+    helpUrl: els.helpUrl.value.trim(),
+    contactUrl: els.contactUrl.value.trim(),
+    privacyUrl: els.privacyUrl.value.trim(),
   };
 }
 
@@ -88,6 +97,18 @@ function openUrl(url) {
 
   window.location.href = url;
   return true;
+}
+
+function openNamedLink(key) {
+  const config = getConfig();
+  const url = config[key];
+  if (!url) {
+    setStatus("当前入口还没有配置地址，请先填写对应链接。", "error");
+    return;
+  }
+
+  setStatus(`正在打开 ${url}`);
+  openUrl(url);
 }
 
 function launchApp() {
@@ -163,4 +184,12 @@ async function copyConfig() {
 
 updateEnvironmentView(getEnvironment());
 els.launchButton.addEventListener("click", launchApp);
+els.sceneLaunchButton.addEventListener("click", launchApp);
 els.copyButton.addEventListener("click", copyConfig);
+
+document.querySelectorAll("[data-link-target]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const target = button.getAttribute("data-link-target");
+    openNamedLink(target);
+  });
+});

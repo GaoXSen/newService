@@ -33,6 +33,27 @@ body {
   padding: 24px 16px 48px;
 }
 
+.top-nav {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 0 10px;
+}
+
+.top-nav a,
+.hero-link {
+  text-decoration: none;
+}
+
+.top-nav a {
+  white-space: nowrap;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.55);
+}
+
 .hero {
   padding: 16px 4px 20px;
 }
@@ -66,9 +87,36 @@ h2 {
 
 .intro,
 .panel-header p,
-.tips-panel li {
+.tips-panel li,
+.faq-panel p,
+.scene-card p,
+.shortcut-card span {
   color: var(--muted);
   line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-link {
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.primary-link {
+  background: linear-gradient(135deg, #db692d 0%, var(--brand) 100%);
+  color: #fff;
+}
+
+.secondary-link {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.64);
+  color: var(--text);
 }
 
 .panel {
@@ -131,6 +179,53 @@ button {
   color: var(--text);
 }
 
+.shortcut-grid,
+.scene-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.shortcut-card,
+.scene-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.shortcut-card {
+  text-align: left;
+}
+
+.shortcut-card strong,
+.scene-card h3 {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 17px;
+}
+
+.scene-card h3 {
+  margin-top: 0;
+}
+
+.scene-tag {
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-dark);
+}
+
+.text-link {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--brand-dark);
+  font-size: 15px;
+}
+
 .status-panel {
   display: grid;
   gap: 12px;
@@ -170,6 +265,25 @@ button {
   margin-bottom: 0;
 }
 
+.faq-panel details {
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.faq-panel details:first-of-type {
+  border-top: 0;
+  padding-top: 8px;
+}
+
+.faq-panel summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.faq-panel details p {
+  margin: 10px 0 0;
+}
+
 @media (min-width: 720px) {
   .page {
     padding-top: 40px;
@@ -177,5 +291,13 @@ button {
 
   .cta-group {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .shortcut-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .scene-list {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

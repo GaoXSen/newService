@@ -15,15 +15,26 @@
   </head>
   <body>
     <main class="page">
+      <nav class="top-nav">
+        <a href="#launcher">打开应用</a>
+        <a href="#shortcuts">快捷入口</a>
+        <a href="#scenes">使用场景</a>
+        <a href="#faq">常见问题</a>
+      </nav>
+
       <section class="hero">
         <p class="eyebrow">Mobile H5 Demo</p>
         <h1>在手机浏览器里拉起对应应用</h1>
         <p class="intro">
           这是一版最小可运行流程：进入页面，识别设备环境，点击按钮拉起 App；如果未安装或被浏览器拦截，则自动回退到下载页。
         </p>
+        <div class="hero-actions">
+          <a class="hero-link primary-link" href="#launcher">立即体验</a>
+          <a class="hero-link secondary-link" href="#shortcuts">查看入口</a>
+        </div>
       </section>
 
-      <section class="panel">
+      <section class="panel" id="launcher">
         <div class="panel-header">
           <h2>目标应用</h2>
           <p>你可以先用默认示例验证，也可以改成你们自己的深链。</p>
@@ -74,6 +85,46 @@
           />
         </label>
 
+        <label class="field">
+          <span>网页版或活动页地址</span>
+          <input
+            id="webUrl"
+            type="url"
+            value="https://example.com/web"
+            spellcheck="false"
+          />
+        </label>
+
+        <label class="field">
+          <span>帮助中心地址</span>
+          <input
+            id="helpUrl"
+            type="url"
+            value="https://example.com/help"
+            spellcheck="false"
+          />
+        </label>
+
+        <label class="field">
+          <span>联系/客服地址</span>
+          <input
+            id="contactUrl"
+            type="url"
+            value="https://example.com/contact"
+            spellcheck="false"
+          />
+        </label>
+
+        <label class="field">
+          <span>隐私说明地址</span>
+          <input
+            id="privacyUrl"
+            type="url"
+            value="https://example.com/privacy"
+            spellcheck="false"
+          />
+        </label>
+
         <div class="cta-group">
           <button id="launchButton" class="primary-button">打开应用</button>
           <button id="copyButton" class="ghost-button">复制当前配置</button>
@@ -94,6 +145,68 @@
         </div>
       </section>
 
+      <section class="panel" id="shortcuts">
+        <div class="panel-header">
+          <h2>快捷入口</h2>
+          <p>即使 App 没有成功拉起，用户也可以继续走网页版、下载页、帮助页这些承接路径。</p>
+        </div>
+
+        <div class="shortcut-grid">
+          <button class="shortcut-card" data-link-target="webUrl">
+            <strong>网页版继续</strong>
+            <span>直接进入 H5 功能页或活动页</span>
+          </button>
+          <button class="shortcut-card" data-link-target="iosStoreUrl" data-platform="ios">
+            <strong>iPhone 下载</strong>
+            <span>跳转 App Store 或 iOS 安装说明</span>
+          </button>
+          <button class="shortcut-card" data-link-target="androidStoreUrl" data-platform="android">
+            <strong>Android 下载</strong>
+            <span>跳转应用市场、下载页或 APK 落地页</span>
+          </button>
+          <button class="shortcut-card" data-link-target="helpUrl">
+            <strong>帮助中心</strong>
+            <span>放 FAQ、使用教程、常见限制说明</span>
+          </button>
+          <button class="shortcut-card" data-link-target="contactUrl">
+            <strong>联系支持</strong>
+            <span>客服、社群、问卷、表单都可以放这里</span>
+          </button>
+          <button class="shortcut-card" data-link-target="privacyUrl">
+            <strong>隐私与协议</strong>
+            <span>适合正式上线前补齐基础信任信息</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="panel" id="scenes">
+        <div class="panel-header">
+          <h2>使用场景</h2>
+          <p>这类卡片可以直接作为“链接跳转页”，把不同用户导向不同入口。</p>
+        </div>
+
+        <div class="scene-list">
+          <article class="scene-card">
+            <p class="scene-tag">新用户</p>
+            <h3>先看网页版介绍，再决定是否下载</h3>
+            <p>适合第一次接触产品的用户。先看功能说明、视频演示或试玩页，再决定是否安装 App。</p>
+            <button class="text-link" data-link-target="webUrl">打开网页版</button>
+          </article>
+          <article class="scene-card">
+            <p class="scene-tag">老用户</p>
+            <h3>直接拉起 App 继续流程</h3>
+            <p>适合已经安装过 App 的用户，从短信、社群、邮件或广告直接回到对应页面。</p>
+            <button class="text-link" id="sceneLaunchButton">继续打开应用</button>
+          </article>
+          <article class="scene-card">
+            <p class="scene-tag">受限环境</p>
+            <h3>微信内打开时引导到浏览器或下载页</h3>
+            <p>适合深链被拦截的场景，把用户明确引导到系统浏览器、下载页或客服协助入口。</p>
+            <button class="text-link" data-link-target="helpUrl">查看处理说明</button>
+          </article>
+        </div>
+      </section>
+
       <section class="panel tips-panel">
         <h2>建议验证路径</h2>
         <ol>
@@ -102,6 +215,26 @@
           <li>观察是否成功拉起；若失败，看是否跳到商店或下载页。</li>
           <li>如果在微信内打开，通常需要提示用户换到系统浏览器。</li>
         </ol>
+      </section>
+
+      <section class="panel faq-panel" id="faq">
+        <div class="panel-header">
+          <h2>常见问题</h2>
+          <p>这部分完全可以静态化，适合先承接咨询和减少客服压力。</p>
+        </div>
+
+        <details>
+          <summary>为什么点“打开应用”没有反应？</summary>
+          <p>常见原因是没有安装 App、当前在微信/微博等内置浏览器中，或深链地址还没有换成真实可用的链接。</p>
+        </details>
+        <details>
+          <summary>静态页能做哪些有价值的功能？</summary>
+          <p>可以做下载分流、活动承接、问题说明、客服联系、功能介绍、邀请码填写、外链跳转和渠道统计入口。</p>
+        </details>
+        <details>
+          <summary>这页后面能接服务端吗？</summary>
+          <p>可以。现在先做静态页验证入口和转化链路，后面再逐步接登录、埋点、接口、个性化配置都不会冲突。</p>
+        </details>
       </section>
     </main>
 
