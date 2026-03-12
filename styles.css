@@ -180,14 +180,16 @@ button {
 }
 
 .shortcut-grid,
-.scene-list {
+.scene-list,
+.tool-grid {
   display: grid;
   gap: 12px;
   margin-top: 16px;
 }
 
 .shortcut-card,
-.scene-card {
+.scene-card,
+.tool-card {
   padding: 16px;
   border: 1px solid var(--line);
   border-radius: 18px;
@@ -224,6 +226,40 @@ button {
   background: transparent;
   color: var(--brand-dark);
   font-size: 15px;
+}
+
+.tool-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.tool-head h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.mini-button {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  background: #fff8ee;
+  color: var(--brand-dark);
+  font-size: 13px;
+}
+
+.tool-value {
+  margin: 14px 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.tool-note {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .status-panel {
@@ -299,5 +335,9 @@ button {
 
   .scene-list {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .tool-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }

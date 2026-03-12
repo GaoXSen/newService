@@ -11,9 +11,18 @@ const els = {
   launchButton: document.querySelector("#launchButton"),
   copyButton: document.querySelector("#copyButton"),
   sceneLaunchButton: document.querySelector("#sceneLaunchButton"),
+  clockButton: document.querySelector("#clockButton"),
+  ipButton: document.querySelector("#ipButton"),
+  geoButton: document.querySelector("#geoButton"),
+  speedButton: document.querySelector("#speedButton"),
   deviceInfo: document.querySelector("#deviceInfo"),
   browserInfo: document.querySelector("#browserInfo"),
   statusBox: document.querySelector("#statusBox"),
+  clockValue: document.querySelector("#clockValue"),
+  ipValue: document.querySelector("#ipValue"),
+  geoValue: document.querySelector("#geoValue"),
+  speedValue: document.querySelector("#speedValue"),
+  networkMeta: document.querySelector("#networkMeta"),
 };
 
 function getEnvironment() {
@@ -111,6 +120,100 @@ function openNamedLink(key) {
   openUrl(url);
 }
 
+function updateClock() {
+  const now = new Date();
+  els.clockValue.textContent = now.toLocaleString("zh-CN", {
+    hour12: false,
+  });
+}
+
+async function fetchIp() {
+  els.ipValue.textContent = "查询中...";
+  try {
+    const response = await fetch("https://api.ipify.org?format=json", {
+      cache: "no-store",
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+    els.ipValue.textContent = data.ip || "未返回 IP";
+    setStatus("公网 IP 查询成功。", "success");
+  } catch (error) {
+    els.ipValue.textContent = "查询失败";
+    setStatus("公网 IP 查询失败，可能是网络、跨域或目标服务不可用。", "error");
+  }
+}
+
+function fetchGeolocation() {
+  if (!navigator.geolocation) {
+    els.geoValue.textContent = "当前浏览器不支持";
+    setStatus("当前浏览器不支持定位接口。", "error");
+    return;
+  }
+
+  els.geoValue.textContent = "定位中...";
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const { latitude, longitude, accuracy } = position.coords;
+      els.geoValue.textContent = `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+      setStatus(`定位成功，精度约 ${Math.round(accuracy)} 米。`, "success");
+    },
+    (error) => {
+      els.geoValue.textContent = "定位失败";
+      setStatus(`定位失败：${error.message}`, "error");
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 8000,
+      maximumAge: 0,
+    }
+  );
+}
+
+function updateNetworkMeta() {
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if (!connection) {
+    els.networkMeta.textContent = "当前浏览器未提供 Network Information API。";
+    return;
+  }
+
+  const parts = [];
+  if (connection.effectiveType) {
+    parts.push(`网络类型 ${connection.effectiveType}`);
+  }
+  if (typeof connection.downlink === "number") {
+    parts.push(`下行 ${connection.downlink} Mbps`);
+  }
+  if (typeof connection.rtt === "number") {
+    parts.push(`RTT ${connection.rtt} ms`);
+  }
+  els.networkMeta.textContent = parts.join("，") || "已检测到网络信息。";
+}
+
+async function quickSpeedTest() {
+  els.speedValue.textContent = "测速中...";
+  const probeUrl = `./app.js?probe=${Date.now()}`;
+  const startedAt = performance.now();
+
+  try {
+    const response = await fetch(probeUrl, {
+      cache: "no-store",
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    await response.text();
+    const duration = Math.round(performance.now() - startedAt);
+    els.speedValue.textContent = `${duration} ms`;
+    setStatus("站点快速测速完成。", "success");
+  } catch (error) {
+    els.speedValue.textContent = "测速失败";
+    setStatus("测速失败，可能是当前网络环境阻断了资源请求。", "error");
+  }
+}
+
 function launchApp() {
   const env = getEnvironment();
   const config = getConfig();
@@ -183,9 +286,15 @@ async function copyConfig() {
 }
 
 updateEnvironmentView(getEnvironment());
+updateClock();
+updateNetworkMeta();
 els.launchButton.addEventListener("click", launchApp);
 els.sceneLaunchButton.addEventListener("click", launchApp);
 els.copyButton.addEventListener("click", copyConfig);
+els.clockButton.addEventListener("click", updateClock);
+els.ipButton.addEventListener("click", fetchIp);
+els.geoButton.addEventListener("click", fetchGeolocation);
+els.speedButton.addEventListener("click", quickSpeedTest);
 
 document.querySelectorAll("[data-link-target]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -193,3 +302,8 @@ document.querySelectorAll("[data-link-target]").forEach((button) => {
     openNamedLink(target);
   });
 });
+
+const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+if (connection && typeof connection.addEventListener === "function") {
+  connection.addEventListener("change", updateNetworkMeta);
+}

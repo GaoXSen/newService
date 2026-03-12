@@ -217,6 +217,51 @@
         </ol>
       </section>
 
+      <section class="panel tools-panel" id="tools">
+        <div class="panel-header">
+          <h2>浏览器小工具</h2>
+          <p>这些能力都可以直接用静态页实现，适合先做演示、引流页或轻量工具页。</p>
+        </div>
+
+        <div class="tool-grid">
+          <article class="tool-card">
+            <div class="tool-head">
+              <h3>当前时钟</h3>
+              <button class="mini-button" id="clockButton">刷新时间</button>
+            </div>
+            <p class="tool-value" id="clockValue">--</p>
+            <p class="tool-note">页面加载后会自动显示本地时间。</p>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-head">
+              <h3>公网 IP</h3>
+              <button class="mini-button" id="ipButton">查询 IP</button>
+            </div>
+            <p class="tool-value" id="ipValue">未查询</p>
+            <p class="tool-note">依赖公开 IP 接口，网络受限时可能失败。</p>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-head">
+              <h3>经纬度</h3>
+              <button class="mini-button" id="geoButton">获取位置</button>
+            </div>
+            <p class="tool-value" id="geoValue">未授权</p>
+            <p class="tool-note">需要浏览器定位授权，部分环境会拦截。</p>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-head">
+              <h3>网络状态</h3>
+              <button class="mini-button" id="speedButton">快速测速</button>
+            </div>
+            <p class="tool-value" id="speedValue">未检测</p>
+            <p class="tool-note" id="networkMeta">等待检测浏览器网络信息。</p>
+          </article>
+        </div>
+      </section>
+
       <section class="panel faq-panel" id="faq">
         <div class="panel-header">
           <h2>常见问题</h2>
