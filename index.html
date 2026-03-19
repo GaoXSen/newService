@@ -11,12 +11,20 @@
       name="description"
       content="一个用于手机端验证 App 拉起流程的 H5 Demo。"
     />
+    <meta name="theme-color" content="#d15b1f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="App Launch" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icons/app-icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icons/app-icon.svg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <main class="page">
       <nav class="top-nav">
-        <a href="#game2048">2048</a>
+        <a href="./2048.html">2048</a>
+        <a href="#install">安装到桌面</a>
         <a href="#launcher">打开应用</a>
         <a href="#shortcuts">快捷入口</a>
         <a href="#scenes">使用场景</a>
@@ -31,38 +39,36 @@
         </p>
         <div class="hero-actions">
           <a class="hero-link primary-link" href="#launcher">立即体验</a>
+          <button class="hero-link secondary-link install-link" id="installButton" type="button" hidden>
+            安装到桌面
+          </button>
+          <a class="hero-link secondary-link" href="./2048.html">玩 2048</a>
           <a class="hero-link secondary-link" href="#shortcuts">查看入口</a>
         </div>
       </section>
 
-      <section class="panel game-panel" id="game2048">
+      <section class="panel install-panel" id="install">
         <div class="panel-header">
-          <h2>2048</h2>
-          <p>放在靠前位置，手机上直接滑动就能玩。</p>
+          <h2>像应用一样安装</h2>
+          <p>支持手机主屏幕图标和桌面独立窗口。适合直接分享给家人使用。</p>
         </div>
-
-        <div class="game-meta">
-          <div class="score-box">
-            <span>分数</span>
-            <strong id="scoreValue">0</strong>
-          </div>
-          <button id="restartGameButton" class="ghost-button">重新开始</button>
+        <div class="install-grid">
+          <article class="install-card">
+            <strong>iPhone / iPad</strong>
+            <span>在 Safari 里点“分享”，再选“添加到主屏幕”。</span>
+          </article>
+          <article class="install-card">
+            <strong>Android</strong>
+            <span>在 Chrome 中点菜单，选择“安装应用”或“添加到主屏幕”。</span>
+          </article>
+          <article class="install-card">
+            <strong>Windows / Mac</strong>
+            <span>在浏览器地址栏右侧点击安装图标，或使用上方按钮。</span>
+          </article>
         </div>
-
-        <div class="game-board-wrap">
-          <div class="game-board" id="gameBoard" aria-label="2048 board"></div>
-        </div>
-
-        <div class="game-controls">
-          <button class="mini-button" data-move="up">上</button>
-          <div class="game-controls-row">
-            <button class="mini-button" data-move="left">左</button>
-            <button class="mini-button" data-move="down">下</button>
-            <button class="mini-button" data-move="right">右</button>
-          </div>
-        </div>
-
-        <p class="tool-note" id="gameMessage">合并相同数字，目标是尽量打到 2048。</p>
+        <p class="install-note" id="installStatus">
+          当前浏览器会在支持时显示安装入口；安装后会以独立窗口启动这个页面。
+        </p>
       </section>
 
       <section class="panel" id="launcher">
@@ -314,6 +320,7 @@
       </section>
     </main>
 
+    <script src="./pwa.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>

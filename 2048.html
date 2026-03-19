@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>2048</title>
+    <meta name="description" content="纯净版 2048 游戏页面。" />
+    <meta name="theme-color" content="#d15b1f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="2048" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icons/app-icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icons/app-icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <nav class="top-nav">
+        <a href="./index.html">返回主页</a>
+      </nav>
+
+      <section class="hero">
+        <p class="eyebrow">Mini Game</p>
+        <h1>2048</h1>
+        <p class="intro">直接滑动开始。支持手机手势、按钮操作和键盘方向键。</p>
+      </section>
+
+      <section class="panel game-panel" id="game2048">
+        <div class="game-meta">
+          <div class="score-box">
+            <span>分数</span>
+            <strong id="scoreValue">0</strong>
+          </div>
+          <button id="restartGameButton" class="ghost-button">重新开始</button>
+        </div>
+
+        <div class="game-board-wrap">
+          <div class="game-board" id="gameBoard" aria-label="2048 board"></div>
+        </div>
+
+        <div class="game-controls">
+          <button class="mini-button" data-move="up">上</button>
+          <div class="game-controls-row">
+            <button class="mini-button" data-move="left">左</button>
+            <button class="mini-button" data-move="down">下</button>
+            <button class="mini-button" data-move="right">右</button>
+          </div>
+        </div>
+
+        <p class="tool-note" id="gameMessage">合并相同数字，目标是尽量打到 2048。</p>
+      </section>
+    </main>
+
+    <script src="./pwa.js"></script>
+    <script src="./game-2048.js"></script>
+  </body>
+</html>

@@ -7,6 +7,9 @@
 - `index.html`: 页面结构
 - `styles.css`: 移动端样式
 - `app.js`: 环境识别、深链拉起、回退逻辑
+- `pwa.js`: 安装入口与 Service Worker 注册
+- `manifest.webmanifest`: PWA 安装清单
+- `service-worker.js`: 静态资源缓存
 
 ## 本地启动
 
@@ -29,8 +32,14 @@ http://你的电脑IP:8080
 - `iosStoreUrl`: App Store 地址
 - `androidStoreUrl`: Android 下载页、应用市场地址，或你们自己的落地页
 
+## 安装成桌面应用
+
+- 桌面 Chrome / Edge: 打开页面后可以直接安装成独立应用窗口。
+- Android Chrome: 可安装到主屏幕。
+- iPhone / iPad: 通过 Safari 的“添加到主屏幕”生成图标。
+
 ## 注意
 
 - 微信里通常无法直接拉起自定义 Scheme，需要引导用户去系统浏览器。
 - 不同 Android 厂商对深链拦截策略不同，真机测试必不可少。
-- 如果你们后续要做 PWA，可以在此基础上再补 `manifest.webmanifest` 和 Service Worker。
+- 如果要兼容更严格的 iOS 图标要求，后续最好再补一套 PNG 图标资源。

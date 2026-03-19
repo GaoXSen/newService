@@ -103,9 +103,13 @@ h2 {
 }
 
 .hero-link {
+  appearance: none;
+  border: 0;
   padding: 12px 18px;
   border-radius: 999px;
   font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .primary-link {
@@ -260,6 +264,35 @@ button {
   margin-bottom: 0;
   color: var(--muted);
   line-height: 1.6;
+}
+
+.install-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.install-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.install-card strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 17px;
+}
+
+.install-card span,
+.install-note {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.install-note {
+  margin: 16px 0 0;
 }
 
 .game-meta {
@@ -421,5 +454,9 @@ button {
 
   .tool-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .install-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
