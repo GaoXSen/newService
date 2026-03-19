@@ -10,6 +10,7 @@
 - `pwa.js`: 安装入口与 Service Worker 注册
 - `manifest.webmanifest`: PWA 安装清单
 - `service-worker.js`: 静态资源缓存
+- `icons/`: SVG + PNG 图标资源，兼容桌面与手机主屏幕
 
 ## 本地启动
 

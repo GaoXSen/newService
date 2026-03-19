@@ -1,4 +1,4 @@
-const CACHE_NAME = "app-launch-demo-v1";
+const CACHE_NAME = "assistant-pwa-v2";
 const CORE_ASSETS = [
   "./",
   "./index.html",
@@ -8,6 +8,10 @@ const CORE_ASSETS = [
   "./pwa.js",
   "./game-2048.js",
   "./manifest.webmanifest",
+  "./icons/apple-touch-icon.png",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
+  "./icons/icon-512-maskable.png",
   "./icons/app-icon.svg",
   "./icons/app-icon-maskable.svg",
 ];
