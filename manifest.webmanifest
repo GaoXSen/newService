@@ -1,13 +1,13 @@
 {
-  "name": "App Launch Demo",
-  "short_name": "App Launch",
+  "name": "私人助理",
+  "short_name": "私人助理",
   "description": "一个可安装的静态 H5 Demo，支持桌面和手机主屏幕图标。",
   "lang": "zh-CN",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f6efe4",
-  "theme_color": "#d15b1f",
+  "background_color": "#07C160",
+  "theme_color": "#07C160",
   "icons": [
     {
       "src": "./icons/app-icon.svg",

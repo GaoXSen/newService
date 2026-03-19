@@ -1,28 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
     <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
-      <stop offset="0%" stop-color="#f4b36c" />
-      <stop offset="100%" stop-color="#d15b1f" />
+      <stop offset="0%" stop-color="#34d47c" />
+      <stop offset="100%" stop-color="#07C160" />
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="116" fill="url(#bg)" />
-  <circle cx="256" cy="170" r="48" fill="#fff6ea" opacity="0.9" />
-  <path
-    d="M162 306c0-52.2 42.3-94.5 94.5-94.5S351 253.8 351 306v56H162z"
-    fill="#fff6ea"
-  />
-  <path
-    d="M188 258c20-23 43.6-34.5 70.8-34.5 27.6 0 51.7 12 72.2 36"
-    fill="none"
-    stroke="#9d3b11"
-    stroke-linecap="round"
-    stroke-width="22"
-  />
-  <path
-    d="M150 372h212"
-    fill="none"
-    stroke="#9d3b11"
-    stroke-linecap="round"
-    stroke-width="24"
-  />
+  <circle cx="256" cy="256" r="150" fill="#ffffff" opacity="0.14" />
+  <text
+    x="256"
+    y="314"
+    fill="#ffffff"
+    font-family="Nunito, Quicksand, Arial Rounded MT Bold, Trebuchet MS, sans-serif"
+    font-size="230"
+    font-weight="800"
+    text-anchor="middle"
+  >
+    G
+  </text>
 </svg>
