@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: private-assistant-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: private_assistant
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data

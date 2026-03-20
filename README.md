@@ -1,46 +1,133 @@
-# App Launch Demo
+# 私人助理
 
-一个最小可运行的手机 H5 Demo，用来验证“在移动浏览器中打开页面并拉起对应 App”的流程。
+这个仓库现在分成两部分：
 
-## 文件
+1. 根目录保留当前已经上线的静态 PWA 原型，用来继续给家人访问和安装。
+2. `apps/`、`packages/`、`infra/` 下开始搭真正的前后端分离产品骨架。
 
-- `index.html`: 页面结构
-- `styles.css`: 移动端样式
-- `app.js`: 环境识别、深链拉起、回退逻辑
-- `pwa.js`: 安装入口与 Service Worker 注册
-- `manifest.webmanifest`: PWA 安装清单
-- `service-worker.js`: 静态资源缓存
-- `icons/`: SVG + PNG 图标资源，兼容桌面与手机主屏幕
+## 当前仓库结构
 
-## 本地启动
+- `index.html` 等根目录静态文件：现有 PWA 原型
+- `apps/web`: 用户端前端骨架
+- `apps/api`: 后端 API 骨架
+- `packages/shared`: 共享常量和前后端共用数据
+- `infra`: 本地和生产部署编排
+- `docs/architecture.md`: 架构说明
 
-如果机器上有 Python，可以在当前目录执行：
+## 本地开发规划
+
+后续本地开发统一按 monorepo 方式进行：
+
+```text
+apps/web      前端
+apps/api      后端
+packages/*    共享包
+infra/*       部署配置
+```
+
+建议本机补齐：
+
+- Node.js 22
+- pnpm 10
+- Docker Desktop 或等价容器环境
+
+工作区依赖安装：
+
+```bash
+export NVM_DIR="$HOME/.nvm"
+. "$NVM_DIR/nvm.sh"
+pnpm install
+```
+
+## 环境变量
+
+根目录示例：
+
+```bash
+cp .env.example .env
+```
+
+API 示例：
+
+```bash
+cp apps/api/.env.example apps/api/.env
+```
+
+如果本地开发直接使用腾讯云上的 PostgreSQL，请改用：
+
+```bash
+cp apps/api/.env.tunnel.example apps/api/.env
+```
+
+然后把 `DATABASE_URL` 里的密码替换成当前服务器数据库密码。
+
+## 现有 PWA 原型
+
+根目录静态页仍然可直接用 Python 启：
 
 ```bash
 python3 -m http.server 8080
 ```
 
-然后在同一局域网的手机里访问：
+用于快速验证：
 
-```text
-http://你的电脑IP:8080
+- 手机安装到桌面
+- 家庭成员访问入口
+- 现有品牌与图标
+
+## 服务器规划
+
+腾讯云服务器已经按这个方向初始化：
+
+- Ubuntu 24.04
+- Docker
+- Docker Compose
+- UFW
+- Fail2ban
+- `/srv/private-assistant` 部署目录
+
+后续正式部署走 Git + 容器镜像/构建物，不在服务器上直接开发。
+
+## 本地连接云数据库
+
+开发时推荐通过 SSH 隧道连云上的 PostgreSQL，而不是直接开放公网数据库端口：
+
+```bash
+bash scripts/dev-db-tunnel.sh
 ```
 
-## 真实接入时要替换的内容
+隧道建立后，本地访问地址就是：
 
-- `iosScheme`: 你们 App 的 iOS 深链或 Universal Link
-- `androidScheme`: 你们 App 的 Android Scheme 或 Intent URL
-- `iosStoreUrl`: App Store 地址
-- `androidStoreUrl`: Android 下载页、应用市场地址，或你们自己的落地页
+```text
+127.0.0.1:5433
+```
 
-## 安装成桌面应用
+## 当前认证开发默认值
 
-- 桌面 Chrome / Edge: 打开页面后可以直接安装成独立应用窗口。
-- Android Chrome: 可安装到主屏幕。
-- iPhone / iPad: 通过 Safari 的“添加到主屏幕”生成图标。
+- 管理员账号：`owner`
+- 管理员密码：`ChangeMe123!`
+- 邀请码：`FAMILY-ACCESS`
 
-## 注意
+## 当前本地启动方式
 
-- 微信里通常无法直接拉起自定义 Scheme，需要引导用户去系统浏览器。
-- 不同 Android 厂商对深链拦截策略不同，真机测试必不可少。
-- 如果要兼容更严格的 iOS 图标要求，后续最好再补一套 PNG 图标资源。
+先开数据库隧道：
+
+```bash
+bash scripts/dev-db-tunnel.sh
+```
+
+再开 API：
+
+```bash
+export NVM_DIR="$HOME/.nvm"
+. "$NVM_DIR/nvm.sh"
+pnpm --filter @private-assistant/api dev
+```
+
+再开 Web：
+
+```bash
+export NVM_DIR="$HOME/.nvm"
+. "$NVM_DIR/nvm.sh"
+pnpm --filter @private-assistant/web dev
+```

@@ -1,0 +1,14 @@
+{
+  "name": "private-assistant",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.8.1",
+  "scripts": {
+    "dev:web": "pnpm --filter @private-assistant/web dev",
+    "dev:api": "pnpm --filter @private-assistant/api dev",
+    "dev": "pnpm -r --parallel --stream dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  }
+}

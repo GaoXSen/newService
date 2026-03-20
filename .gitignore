@@ -1,2 +1,12 @@
-.DS_Store
-Thumbs.db
+node_modules
+.pnpm-store
+.next
+dist
+coverage
+.env
+.env.local
+.env.*.local
+apps/api/generated
+apps/api/prisma/dev.db
+apps/api/prisma/dev.db-journal
+infra/data
